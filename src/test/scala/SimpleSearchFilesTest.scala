@@ -1,10 +1,17 @@
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
 import simple.search.DataReader
-import simple.search.errors.NotDirectory
+import simple.search.errors.{MissingPathArg, NotDirectory}
 
 class SimpleSearchFilesTest extends AnyFunSuite with Matchers
   with DataReader {
+
+  test("no path") {
+    readDir(Array()) match {
+      case Right(_) => throw new Exception("'no path' test failed")
+      case Left(error) => error shouldBe MissingPathArg
+    }
+  }
 
   test("empty path") {
     val path = ""
