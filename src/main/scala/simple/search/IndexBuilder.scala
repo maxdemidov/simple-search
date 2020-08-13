@@ -38,7 +38,7 @@ trait IndexBuilder extends DataReader {
   }
 
   private def splitToWords(data: String) = {
-    data.split("\\s+").groupBy(x => x).map(x => WordCount(x._1, x._2.length))
+    data.split("\\W+").groupBy(x => x).map(x => WordCount(x._1, x._2.length))
   }
 
   private def extendOccurrencesWithWords(wordsOccurrences: mutable.Map[String, List[FileWordCount]],

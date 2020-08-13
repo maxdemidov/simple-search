@@ -8,7 +8,7 @@ object ProgramIterator extends IndexSearcher {
   def iterate(indexedFiles: Index): Unit = {
 
     print(s"search>")
-    val searchString = readLine()
+    val searchString = scala.io.StdIn.readLine()
 
     if (searchString != ":quit") {
       searchIndex(searchString, indexedFiles).toList match {
